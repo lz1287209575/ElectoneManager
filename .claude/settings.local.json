@@ -1,0 +1,36 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cmake -B build -DCMAKE_BUILD_TYPE=Release -DEM_ENABLE_UI=ON)",
+      "Bash(cmake:*)",
+      "Bash(wc:*)",
+      "WebSearch",
+      "WebFetch(domain:jp.yamaha.com)",
+      "WebFetch(domain:usa.yamaha.com)",
+      "WebFetch(domain:download.yamaha.com)",
+      "WebFetch(domain:www.yamaha.com.cn)",
+      "WebFetch(domain:sg.yamaha.com)",
+      "WebFetch(domain:id.yamaha.com)",
+      "WebFetch(domain:www.juhend.ee)",
+      "WebFetch(domain:www.instrukcjaobslugipdf.pl)",
+      "WebFetch(domain:my.yamaha.com)",
+      "Bash(brew install:*)",
+      "Bash(pdftoppm -v)",
+      "Bash(pdftotext \"/Users/padgetthan/.claude-internal/projects/-Users-padgetthan-ElectoneManager/b7b82ed1-33a3-46ba-a908-6b3fa364d29e/tool-results/webfetch-1775113666773-7dkkuo.pdf\" -)",
+      "Bash(pdftotext \"/Users/padgetthan/.claude-internal/projects/-Users-padgetthan-ElectoneManager/b7b82ed1-33a3-46ba-a908-6b3fa364d29e/tool-results/webfetch-1775113637093-miksv0.pdf\" -)",
+      "Bash(pdftotext \"/Users/padgetthan/.claude-internal/projects/-Users-padgetthan-ElectoneManager/b7b82ed1-33a3-46ba-a908-6b3fa364d29e/tool-results/webfetch-1775113666773-7dkkuo.pdf\" /tmp/els02_manual.txt)",
+      "Read(//tmp/**)",
+      "Bash(pdftotext \"/Users/padgetthan/.claude-internal/projects/-Users-padgetthan-ElectoneManager/b7b82ed1-33a3-46ba-a908-6b3fa364d29e/tool-results/webfetch-1775113637093-miksv0.pdf\" /tmp/els02_midi.txt)",
+      "Bash(pdfinfo:*)",
+      "Bash(pdftotext -layout \"/Users/padgetthan/.claude-internal/projects/-Users-padgetthan-ElectoneManager/b7b82ed1-33a3-46ba-a908-6b3fa364d29e/tool-results/webfetch-1775113637093-miksv0.pdf\" /tmp/els02_midi2.txt)",
+      "Bash(python3:*)",
+      "Bash(grep -r \"TODO\\\\|FIXME\\\\|XXX\\\\|HACK\" /Users/padgetthan/ElectoneManager/src --include=*.cpp --include=*.h)",
+      "Bash(grep -E \"\\\\.h$\")",
+      "Bash(/tmp/ElectoneManager_CodebaseExploration.md:*)",
+      "Bash(/tmp/quick_summary.txt:*)",
+      "Bash(find /Users/padgetthan/ElectoneManager -type f -name *.swift -o -name *.xib -o -name *.storyboard -o -name *Bridging*)",
+      "Bash(head:*)",
+      "Bash(tail:*)"
+    ]
+  }
+}

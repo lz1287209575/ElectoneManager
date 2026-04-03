@@ -1,0 +1,42 @@
+全平台原生 C++ 音乐 App 开发 PRD (针对 AI Agent)
+核心任务：
+“请为一个名为 ElectoneManager 的跨平台 C++ 项目构建底层框架。该项目不使用 JUCE，必须直接调用各平台的原生 API 以追求极限性能。目标是连接 Yamaha ELS-02C，实现音色触发与 USB 音频回传。”
+1. 平台底层 API 映射要求 (Core Requirement)
+请针对不同平台实现以下接口的派生类：
+Windows:
+MIDI: Windows MIDI Services (或 WinMM)
+Audio: ASIO (调用 Yamaha Steinberg USB 驱动) 或 WASAPI (Exclusive Mode)
+macOS / iOS:
+MIDI: Core MIDI
+Audio: Core Audio (Audio Unit / Remote IO)
+Linux:
+MIDI: ALSA Seq
+Audio: ALSA 或 JACK
+Android:
+MIDI: Android MIDI API (NDK)
+Audio: Oboe (Google 官方推荐的高性能 C++ 音频库)
+2. C++ 抽象层设计 (Abstractions)
+请定义以下抽象基类（Interface），并使用现代 C++ (C++17/20) 实现：
+IMidiDevice: 统一 openPort, closePort, onMessageReceived。
+IAudioEngine: 统一 startStream, stopStream, renderCallback。
+关键算法：实现一个 MidiToChineseInstrumentMapper 类。
+水平触前 (Horizontal Aftertouch)：将 ELS-02C 的 14-bit Pitch Bend 数据解析为 float (范围 -1.0 到 1.0)。
+采样器：一个基础的单波形循环（Looping）采样播放器，包含简单的低通滤波器。
+3. 跨平台构建系统 (Build System)
+提供一个 CMakeLists.txt。
+使用 if(APPLE), if(WIN32), if(ANDROID), if(UNIX AND NOT APPLE) 逻辑来链接不同的系统库（如 winmm.lib, CoreAudio.framework, asound 等）。
+4. 高级功能：USB Audio 绑定逻辑
+编写一段逻辑：自动扫描系统中的音频输出设备，如果名称包含 "Yamaha" 或 "Electone"，则将其设为默认输出。
+确保音频缓冲区（Buffer Size）在所有平台均可配置，默认目标延迟 < 10ms。
+🛠️ 针对不同平台的代码实现重点（给你的开发建议）
+平台	最大的坑	解决方法
+Windows	默认驱动延迟极高	必须支持 ASIO。你的代码需要包含 asiosys.h 并调用雅马哈官方驱动。
+iOS/Android	移动端权限管理	必须在 AndroidManifest.xml 和 Info.plist 开启 MIDI 和音频权限。
+Linux	音频权限与冲突	建议使用 ALSA 直连，以避开 PulseAudio/PipeWire 的混音延迟。
+Android	采样率不匹配导致的爆音	使用 Oboe 库，它会自动处理 Low Latency 模式下的采样率转换。
+💡 如何在 Mac 上开始？
+准备 CMake：Mac 上使用 brew install cmake。
+创建目录结构：
+/src/common (通用逻辑)
+/src/platform/apple (macOS/iOS 原生代码)
+/src/platform/windows (Win 专用) ...

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.yourcompany.electonemanager"
+    android:versionCode="1"
+    android:versionName="1.0.0">
+
+    <!-- ── SDK versions ─────────────────────────────────────── -->
+    <uses-sdk
+        android:minSdkVersion="29"
+        android:targetSdkVersion="34" />
+
+    <!-- ── Required hardware features ──────────────────────── -->
+    <uses-feature
+        android:name="android.hardware.midi"
+        android:required="true" />
+    <uses-feature
+        android:name="android.hardware.usb.host"
+        android:required="false" />
+
+    <!-- ── Permissions ──────────────────────────────────────── -->
+    <!-- Audio recording (USB audio input from ELS-02C) -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
+    <!-- Low-latency audio output -->
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+
+    <!-- USB device access (Yamaha USB driver) -->
+    <uses-permission android:name="android.permission.USB_PERMISSION" />
+
+    <!-- MIDI access (Android 12+) -->
+    <uses-permission android:name="android.permission.ACCESS_MIDI" />
+
+    <!-- ── Application ──────────────────────────────────────── -->
+    <application
+        android:label="ElectoneManager"
+        android:hasCode="true"
+        android:debuggable="false">
+
+        <!-- Main activity (replace with your actual Activity class) -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:configChanges="orientation|screenSize|keyboardHidden">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <!-- Auto-launch when Yamaha USB device is connected -->
+            <intent-filter>
+                <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" />
+            </intent-filter>
+            <meta-data
+                android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED"
+                android:resource="@xml/usb_device_filter" />
+
+            <!-- Auto-launch when MIDI device is connected -->
+            <intent-filter>
+                <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" />
+            </intent-filter>
+        </activity>
+
+        <!-- Native library -->
+        <meta-data
+            android:name="android.app.lib_name"
+            android:value="ElectoneManager" />
+
+    </application>
+
+</manifest>

@@ -1,0 +1,68 @@
+name: ElectoneManager
+options:
+  bundleIdPrefix: com.electonemanager
+  deploymentTarget:
+    iOS: "17.0"
+  xcodeVersion: "15"
+  createIntermediateGroups: true
+
+targets:
+  ElectoneManager:
+    type: application
+    platform: iOS
+    deploymentTarget: "17.0"
+    sources:
+      - path: ../src/ios
+        includes:
+          - "**/*.swift"
+          - "**/*.storyboard"
+          - "**/*.xib"
+          - Resources/**
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.electonemanager.app
+        SWIFT_VERSION: "5.9"
+        SWIFT_OBJC_BRIDGING_HEADER: $(SRCROOT)/../src/ios/ElectoneManager-Bridging-Header.h
+        HEADER_SEARCH_PATHS:
+          - $(SRCROOT)/../src
+          - $(SRCROOT)/../src/common
+          - $(SRCROOT)/../src/platform
+          - $(SRCROOT)/../src/ios
+        LIBRARY_SEARCH_PATHS:
+          - $(SRCROOT)/../build-ios/Release-iphoneos
+          - $(SRCROOT)/../build-ios-sim/Release-iphonesimulator
+        OTHER_LDFLAGS:
+          - "-lem_engine"
+          - "-lc++"
+        GCC_OPTIMIZATION_LEVEL: "2"
+        ENABLE_BITCODE: NO
+        TARGETED_DEVICE_FAMILY: "1,2"      # iPhone + iPad
+        INFOPLIST_FILE: $(SRCROOT)/../config/Info.ios.plist
+        CURRENT_PROJECT_VERSION: 1
+        MARKETING_VERSION: 1.0.0
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+      configs:
+        Debug:
+          LIBRARY_SEARCH_PATHS:
+            - $(SRCROOT)/../build-ios-sim/Release-iphonesimulator
+          ONLY_ACTIVE_ARCH: YES
+        Release:
+          LIBRARY_SEARCH_PATHS:
+            - $(SRCROOT)/../build-ios/Release-iphoneos
+          SWIFT_COMPILATION_MODE: wholemodule
+    dependencies:
+      - framework: CoreAudio.framework
+        embed: false
+      - framework: CoreMIDI.framework
+        embed: false
+      - framework: AudioToolbox.framework
+        embed: false
+      - framework: AVFoundation.framework
+        embed: false
+    info:
+      path: ../config/Info.ios.plist
+      properties:
+        CFBundleName: ElectoneManager
+        CFBundleDisplayName: ElectoneManager
+        NSMicrophoneUsageDescription: "使用麦克风录音"
+        NSBluetoothAlwaysUsageDescription: "连接蓝牙 MIDI 设备"

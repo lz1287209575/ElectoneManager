@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+    "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <!-- ── App Identity ─────────────────────────────────────── -->
+    <key>CFBundleIdentifier</key>
+    <string>com.yourcompany.ElectoneManager</string>
+    <key>CFBundleName</key>
+    <string>ElectoneManager</string>
+    <key>CFBundleVersion</key>
+    <string>1</string>
+    <key>CFBundleShortVersionString</key>
+    <string>1.0.0</string>
+    <key>CFBundleExecutable</key>
+    <string>$(EXECUTABLE_NAME)</string>
+    <key>CFBundlePackageType</key>
+    <string>APPL</string>
+
+    <!-- ── Required Device Capabilities ─────────────────────── -->
+    <key>UIRequiredDeviceCapabilities</key>
+    <array>
+        <string>armv7</string>
+    </array>
+
+    <!-- ── Audio Session: playback (required for Core Audio) ── -->
+    <key>UIBackgroundModes</key>
+    <array>
+        <string>audio</string>    <!-- Allow audio in background -->
+    </array>
+
+    <!-- ── Privacy Usage Descriptions ───────────────────────── -->
+    <!-- iOS 14+: required to use microphone (USB audio input) -->
+    <key>NSMicrophoneUsageDescription</key>
+    <string>ElectoneManager requires microphone access to capture audio from the Yamaha ELS-02C via USB.</string>
+
+    <!-- iOS 13+: Core Bluetooth is used for BLE-MIDI devices -->
+    <key>NSBluetoothAlwaysUsageDescription</key>
+    <string>ElectoneManager may connect to Bluetooth MIDI devices for wireless performance.</string>
+
+    <!-- iOS 13+: legacy Bluetooth access (< iOS 13 compatibility) -->
+    <key>NSBluetoothPeripheralUsageDescription</key>
+    <string>ElectoneManager requires Bluetooth for MIDI connectivity.</string>
+
+    <!-- ── Core MIDI / USB-MIDI (no extra plist key needed) ──── -->
+    <!-- CoreMIDI is automatically permitted; no NSMIDIUsageDescription required as of iOS 14. -->
+
+    <!-- ── Orientation support ─────────────────────────────── -->
+    <key>UISupportedInterfaceOrientations</key>
+    <array>
+        <string>UIInterfaceOrientationPortrait</string>
+        <string>UIInterfaceOrientationLandscapeLeft</string>
+        <string>UIInterfaceOrientationLandscapeRight</string>
+    </array>
+
+    <!-- ── Launch screen ───────────────────────────────────── -->
+    <key>UILaunchStoryboardName</key>
+    <string>LaunchScreen</string>
+</dict>
+</plist>

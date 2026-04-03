@@ -1,0 +1,81 @@
+# ── Build outputs ────────────────────────────────────────────────
+build/
+build-ios/
+build-ios-sim/
+build-macos-flutter/
+cmake-build-*/
+*.o
+*.a
+*.dylib
+*.so
+*.dll
+*.exe
+
+# ── CMake ────────────────────────────────────────────────────────
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+install_manifest.txt
+CTestTestfile.cmake
+_deps/
+
+# ── Flutter ──────────────────────────────────────────────────────
+flutter_app/.dart_tool/
+flutter_app/.flutter-plugins
+flutter_app/.flutter-plugins-dependencies
+flutter_app/.packages
+flutter_app/build/
+flutter_app/pubspec.lock
+flutter_app/macos/Frameworks/libem_engine.dylib
+flutter_app/macos/Flutter/ephemeral/
+flutter_app/macos/Runner.xcworkspace/xcshareddata/
+flutter_app/macos/Pods/
+flutter_app/macos/Podfile.lock
+
+# ── Xcode / iOS ──────────────────────────────────────────────────
+ios/Pods/
+ios/Podfile.lock
+ios/*.xcworkspace/
+*.xcworkspace/xcuserdata/
+*.xcodeproj/xcuserdata/
+DerivedData/
+*.moved-aside
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+
+# ── macOS ────────────────────────────────────────────────────────
+*.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# ── Archives / zips ──────────────────────────────────────────────
+*.zip
+*.tar.gz
+*.tgz
+
+# ── IDE / Editor ─────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ── Logs / temp ──────────────────────────────────────────────────
+*.log
+tmp/
+.tmp/
+
+# ── Secrets / env ────────────────────────────────────────────────
+.env
+*.pem
+*.p12
+*.cer
+*.mobileprovision
